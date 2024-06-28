@@ -1,0 +1,8 @@
+{
+    "PORT": 3000,
+    "MODE": "DEV",
+    "RUN_MIGRATIONS": true,
+    "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317",
+    "LOG_LEVEL": "debug"
+  }
+  
