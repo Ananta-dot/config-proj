@@ -2,15 +2,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypedConfigModule, fileLoader } from 'nest-typed-config';
+import { TypedConfigModule } from 'nest-typed-config';
 import { RootConfig } from './config/config.model';
 import { ConfigService } from './config/config.service';
+import { awsSecretsLoader } from './config/aws-secrets-loader';
 
 @Module({
   imports: [
-    TypedConfigModule.forRoot({
+    TypedConfigModule.forRootAsync({
       schema: RootConfig,
-      load: fileLoader(),
+      load: awsSecretsLoader,
     }),
   ],
   controllers: [AppController],

@@ -13,15 +13,16 @@ const app_service_1 = require("./app.service");
 const nest_typed_config_1 = require("nest-typed-config");
 const config_model_1 = require("./config/config.model");
 const config_service_1 = require("./config/config.service");
+const aws_secrets_loader_1 = require("./config/aws-secrets-loader");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            nest_typed_config_1.TypedConfigModule.forRoot({
+            nest_typed_config_1.TypedConfigModule.forRootAsync({
                 schema: config_model_1.RootConfig,
-                load: (0, nest_typed_config_1.fileLoader)(),
+                load: aws_secrets_loader_1.awsSecretsLoader,
             }),
         ],
         controllers: [app_controller_1.AppController],
